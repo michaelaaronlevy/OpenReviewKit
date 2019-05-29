@@ -1,0 +1,1 @@
+" table:print="false" table:style-name="ta1"><office:forms form:apply-design-mode="false" form:automatic-focus="false"/><table:table-column table:style-name="co1" table:default-cell-style-name="ce1" table:number-columns-repeated="10"/><table:table-column table:style-name="co3" table:default-cell-style-name="Default"/>

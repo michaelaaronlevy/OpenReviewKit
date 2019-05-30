@@ -215,11 +215,18 @@ public class DragDropFilesList implements FileDrop.Listener
     * attempt to remove this file from the list.
     * 
     * @param f
-    * @return false if it was not present in the list; true if it was removed
-    *         (either way, it is not in the list after this method is called)
+    * @return false if it was not present in the list or if the list is frozen;
+    *         true if it was removed (either way, as long as this object is not
+    *         frozen, the file to remove will not be in the list after this
+    *         method is called)
     */
    public synchronized boolean removeFile(final File f)
    {
+      if(frozen)
+      {
+         return false;
+      }
+      
       final Enumeration<File> e = filesInList.elements();
       final int size = filesInList.size();
       int index = 0;
@@ -250,11 +257,17 @@ public class DragDropFilesList implements FileDrop.Listener
     * 
     * @param f
     *           the file to add
-    * @return -1 if it was blocked by the GateKeeper, 0 if it is already in the
-    *         list, or N if it was added, where N is the total number of files.
+    * @return -2 if the files could not be added because it is frozen; -1 if it
+    *         was blocked by the GateKeeper; 0 if it is already in the list; or
+    *         N if it was added, where N is the total number of files.
     */
    public int addFile(final File f)
    {
+      if(frozen)
+      {
+         return -2;
+      }
+      
       if(filesInList.contains(f))
       {
          return 0;
@@ -294,6 +307,20 @@ public class DragDropFilesList implements FileDrop.Listener
    }
    
    /**
+    * this will disable the buttons to add/remove/reorder files and it will
+    * prevent files from being added through drag & drop
+    */
+   public void freeze()
+   {
+      frozen = true;
+   }
+   
+   public void unfreeze()
+   {
+      frozen = false;
+   }
+   
+   /**
     * JPanel with a BorderLayout, buttons to the NORTH, the JScrollPane with the
     * files list in the CENTER. You can add your own components to the
     * WEST/EAST/SOUTH.
@@ -301,6 +328,8 @@ public class DragDropFilesList implements FileDrop.Listener
    public final JPanel mainPanel = new JPanel();
    
    private Component context = null;
+   
+   private boolean frozen = false;
    
    private final DefaultListModel<File> filesInList = new DefaultListModel<File>();
    private final JList<File> list = new JList<File>(filesInList);
@@ -327,6 +356,11 @@ public class DragDropFilesList implements FileDrop.Listener
    {
       public void actionPerformed(final ActionEvent aev)
       {
+         if(frozen)
+         {
+            return;
+         }
+         
          final Object source = aev.getSource();
          if(source == upButton || source == downButton)
          {

@@ -123,8 +123,8 @@ public class OpenReviewKit
       
       final int v = dimensionMain.height > (dimensionMain.width * 5) / 2 ? (dimensionMain.width * 5) / 2
             : dimensionMain.height;
-      float bigSize = ((v + 280) / 50);
-      float smallSize = ((v + 800) / 120);
+      float bigSize = ((v + 280) / 25);
+      float smallSize = ((v + 800) / 60);
       float mainSize = (int) ((bigSize + smallSize) / 2);
       bigSize = (int) bigSize;
       smallSize = (int) smallSize;

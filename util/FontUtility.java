@@ -15,6 +15,16 @@ import javax.swing.JFrame;
  * JComponent (including all of its children, children's children, etc.)
  * 
  * <p>
+ * apparently this class gets the screen height without regard for UI scaling
+ * (at least on Windows). So this code is more appropriate to use with Java 8
+ * than Java 10, 11, 12, etc. unless UI scaling is disabled.
+ * 
+ * <p>
+ * The ORK GUI, in its current version, is designed to be used without UI
+ * scaling. It is designed to be used with Java 8 because that is the version
+ * that allows a user to double-click on the runnable jar to run ORK.
+ * 
+ * <p>
  * I AM THE SOLE AUTHOR OF THIS WORK (the FontUtility class) AND I AM PLACING IT
  * IN THE PUBLIC DOMAIN.
  * 

@@ -1,5 +1,5 @@
 # ork
-OpenReviewKit (ORK): tools for extracting text from PDFs while maintaining a memory of where each bit of text came from (the file, page, and coordinates on the page)
+OpenReviewKit (ORK): tools for extracting text from PDFs while maintaining a memory of where each bit of text came from (the file, page number, and coordinates on the page--referred to as the "contextual information").
 
 ORK can be used to extract text from a PDF, and save the extracted text directly to a spreadsheet, which contains not only the text itself (one bit of text per row) but also multiple columns containing contextual information like: which file each bit of text came from, which page, the coordinates on the page, the rotation, and the size of the text.
 
@@ -15,4 +15,10 @@ ORK also comes with the ability to create a searchable word index for multiple P
 
 What is ORK not good for?  It only works with PDFs.  It only works with PDFs that contain text, in that any images or other non-text content will be ignored by ORK.  ORK does not perform OCR and is generally not very useful at fixing OCR errors.  If a PDF is protected by password, ORK may not be able to extract text.
 
-To open the ORK GUI, call the main method of the class OpenReviewKit.  The GUI supports drag-and-drop so it is easy to identify to ORK which PDF(s) you want to extract from.  You choose the mode of operation (e.g., whether it extracts text to a .csv file, or whether it extracts to an .ods, or if will create a searchable word index) by left-clicking or right-clicking on the mode button.  When you have selected the PDFs, and the mode, you click on the "execute" button.
+To run ORK, if you have Java 8 installed, all you need to do is double-click on the runnable jar file (OpenReviewKit-v1.0.0.jar).  You can download a Java 8 installer from adoptopenjdk.net.  ORK is compatible with later versions of Java, but those versions may not support being able to double-click on the jar file in order to run it.  You may need to create a batch file or use the command line to run ORK if you do not have Java 8 installed.
+
+To open the ORK GUI programmatically, call the main method of the class OpenReviewKit.  The GUI supports drag-and-drop so it is easy to identify to ORK which PDF(s) you want to extract from.  You choose the mode of operation (e.g., whether it extracts text to a .csv file, or whether it extracts to an .ods, or if will create a searchable word index) by left-clicking or right-clicking on the mode button.  When you have selected the PDFs, and the mode, you click on the "execute" button.
+
+If you want to make an application that uses PdfToTextGrid to extract text from one or more PDFs, and then processes that output in some way, and you do not want to use the ORK GUI, the easiest way would be to implement the PageConsumer interface. I prepared code that you can use as a starting point for such an application.  It is at: com.github.michaelaaronlevy.ork.sorcerer.YourApplication.  The source code for "YourApplication" is in the public domain.
+
+If you want to make an application that does the same thing, except it uses a GUI with drag & drop to select the PDFs to act on, and uses a GUI to prompt the user to select a file for the application's text output, I prepared code that you can use as a starting point for such an application.  It is at: com.github.michaelaaronlevy.ork.sorcerer.YourApplicationWithDragDrop.  The source code for "YourApplicationWithDragDrop" is in the public domain.

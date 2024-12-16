@@ -15,7 +15,7 @@ ORK also comes with the ability to create a searchable word index for multiple P
 
 What is ORK not good for?  It only works with PDFs.  It only works with PDFs that contain text, in that any images or other non-text content will be ignored by ORK.  ORK does not perform OCR and is generally not very useful at fixing OCR errors.  If a PDF is protected by password, ORK may not be able to extract text.
 
-To run ORK, if you have Java 8 installed, all you need to do is double-click on the runnable jar file (OpenReviewKit-v1.0.0.jar).  You can download a Java 8 installer from adoptopenjdk.net.  ORK is compatible with later versions of Java, but those versions may not support being able to double-click on the jar file in order to run it.  You may need to create a batch file or use the command line to run ORK if you do not have Java 8 installed.
+To run ORK, you will need to have Java 23 installed.  The jar file is executable.  You may want to create a batch file or use the command line to run ORK.
 
 To open the ORK GUI programmatically, call the main method of the class OpenReviewKit.  The GUI supports drag-and-drop so it is easy to identify to ORK which PDF(s) you want to extract from.  You choose the mode of operation (e.g., whether it extracts text to a .csv file, or whether it extracts to an .ods, or if will create a searchable word index) by left-clicking or right-clicking on the mode button.  When you have selected the PDFs, and the mode, you click on the "execute" button.
 
